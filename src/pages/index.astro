@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="OpenMaja" description="Open-source autonomous agent framework for Microsoft 365 environments.">
+
+  <section class="section">
+    <img src="/openmaja-logo.png" alt="OpenMaja" class="hero-logo" />
+    <span class="badge">Hobby project · Under active development</span>
+    <h1>OpenMaja</h1>
+    <p class="tagline">AI agents for the Microsoft ecosystem.</p>
+  </section>
+
+  <section class="section">
+    <h2>What is OpenMaja?</h2>
+    <p>
+      OpenMaja is an open-source exploration into what autonomous AI agents look like when built
+      for the Microsoft world. It brings the agent-first philosophy — scheduled tasks, persistent
+      memory, skill-driven workflows — into environments where IT governance, corporate data
+      policies, and Microsoft 365 integration are first-class constraints.
+    </p>
+    <p>
+      It is not a product. It is a hobby project and a working proof of concept, developed openly
+      and shared for anyone curious about the same ideas.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>Core principles</h2>
+    <ul class="principles">
+      <li><strong>Agent-first</strong> — autonomous, scheduled workflows driven by reusable skills, not just a chat interface</li>
+      <li><strong>Microsoft-native</strong> — built around M365, Entra ID, Teams, Outlook, and the Microsoft Graph API</li>
+      <li><strong>IT-approvable</strong> — governance constraints are first-class design concerns, not afterthoughts</li>
+      <li><strong>Open</strong> — source code is available; no proprietary services or vendor lock-in</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>Projects</h2>
+    <p>
+      OpenMaja is an umbrella for sub-projects that explore specific capabilities and use cases
+      within the Microsoft ecosystem. Each project is self-contained and can be deployed independently.
+    </p>
+    <div class="project-card">
+      <h3>FolderBot</h3>
+      <p>
+        A durable, resumable AI workspace backed by OneDrive for Business. Give your Copilot Studio
+        agent a persistent memory and file workspace — with no custom infrastructure required.
+        Works in any M365 tenant out of the box.
+      </p>
+      <a class="cta" href="/projects/folderbot">View project →</a>
+    </div>
+  </section>
+
+</BaseLayout>
