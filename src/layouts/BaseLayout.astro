@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import CookieBanner from '../components/CookieBanner.astro';
 
 interface Props {
   title: string;
@@ -27,11 +28,19 @@ const pageTitle = title === 'OpenMaja' ? 'OpenMaja' : `${title} | OpenMaja`;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <title>{pageTitle}</title>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RQZ54KNSS5"></script>
-    <script>
+    <!-- Google Consent Mode v2: default denied until user accepts -->
+    <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      const _c = localStorage.getItem('cookie_consent');
+      gtag('consent', 'default', {
+        analytics_storage: _c === 'granted' ? 'granted' : 'denied',
+        ad_storage: 'denied',
+        wait_for_update: _c ? 0 : 500
+      });
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RQZ54KNSS5"></script>
+    <script is:inline>
       gtag('js', new Date());
       gtag('config', 'G-RQZ54KNSS5');
     </script>
@@ -58,6 +67,7 @@ const pageTitle = title === 'OpenMaja' ? 'OpenMaja' : `${title} | OpenMaja`;
         : <slot />
       }
     </main>
+    <CookieBanner />
     <footer>
       <div class="container footer-inner">
         <div class="footer-links">

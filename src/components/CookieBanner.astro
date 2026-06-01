@@ -1,0 +1,101 @@
+---
+// Cookie consent banner — EU GDPR compliant, GA-only
+---
+
+<div class="cookie-banner" id="cookie-banner" style="display:none">
+  <p>
+    This site uses Google Analytics to understand visitor traffic.
+    No advertising tracking.
+    <a href="/legal/privacy">Privacy Policy</a>
+  </p>
+  <div class="cookie-actions">
+    <button id="cookie-decline">Decline</button>
+    <button id="cookie-accept" class="primary">Accept</button>
+  </div>
+</div>
+
+<script>
+  const banner = document.getElementById('cookie-banner');
+  const stored = localStorage.getItem('cookie_consent');
+
+  if (!stored) {
+    banner.style.display = 'flex';
+  }
+
+  document.getElementById('cookie-accept').addEventListener('click', () => {
+    localStorage.setItem('cookie_consent', 'granted');
+    gtag('consent', 'update', { analytics_storage: 'granted' });
+    banner.style.display = 'none';
+  });
+
+  document.getElementById('cookie-decline').addEventListener('click', () => {
+    localStorage.setItem('cookie_consent', 'denied');
+    banner.style.display = 'none';
+  });
+</script>
+
+<style>
+  .cookie-banner {
+    position: fixed;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--navy);
+    color: rgba(255,255,255,0.85);
+    border-radius: 10px;
+    padding: 0.75rem 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    font-size: 0.82rem;
+    line-height: 1.4;
+    box-shadow: 0 4px 24px rgba(1,44,115,0.25);
+    max-width: calc(100vw - 2rem);
+    width: max-content;
+    z-index: 9999;
+  }
+
+  .cookie-banner p {
+    margin: 0;
+  }
+
+  .cookie-banner a {
+    color: var(--aqua);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .cookie-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .cookie-actions button {
+    border: 1.5px solid rgba(255,255,255,0.3);
+    background: transparent;
+    color: rgba(255,255,255,0.8);
+    border-radius: 6px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    font-family: inherit;
+  }
+
+  .cookie-actions button:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+  }
+
+  .cookie-actions button.primary {
+    background: var(--aqua);
+    border-color: var(--aqua);
+    color: var(--navy);
+    font-weight: 600;
+  }
+
+  .cookie-actions button.primary:hover {
+    background: #5ae8e4;
+  }
+</style>
