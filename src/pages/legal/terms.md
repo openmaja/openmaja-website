@@ -1,6 +1,7 @@
 ---
 layout: ../../layouts/BaseLayout.astro
 title: Terms of Service
+prose: true
 ---
 
 # Terms of Service

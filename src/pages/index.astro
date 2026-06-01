@@ -1,54 +1,87 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="OpenMaja" description="Open-source autonomous agent framework for Microsoft 365 environments.">
+<BaseLayout title="OpenMaja" description="Open-source autonomous agent framework for corporate environments.">
 
-  <section class="section">
-    <img src="/openmaja-logo.png" alt="OpenMaja" class="hero-logo" />
-    <span class="badge">Hobby project · Under active development</span>
-    <h1>OpenMaja</h1>
-    <p class="tagline">AI agents for the Microsoft ecosystem.</p>
-  </section>
-
-  <section class="section">
-    <h2>What is OpenMaja?</h2>
-    <p>
-      OpenMaja is an open-source exploration into what autonomous AI agents look like when built
-      for the Microsoft world. It brings the agent-first philosophy — scheduled tasks, persistent
-      memory, skill-driven workflows — into environments where IT governance, corporate data
-      policies, and Microsoft 365 integration are first-class constraints.
-    </p>
-    <p>
-      It is not a product. It is a hobby project and a working proof of concept, developed openly
-      and shared for anyone curious about the same ideas.
-    </p>
-  </section>
-
-  <section class="section">
-    <h2>Core principles</h2>
-    <ul class="principles">
-      <li><strong>Agent-first</strong> — autonomous, scheduled workflows driven by reusable skills, not just a chat interface</li>
-      <li><strong>Microsoft-native</strong> — built around M365, Entra ID, Teams, Outlook, and the Microsoft Graph API</li>
-      <li><strong>IT-approvable</strong> — governance constraints are first-class design concerns, not afterthoughts</li>
-      <li><strong>Open</strong> — source code is available; no proprietary services or vendor lock-in</li>
-    </ul>
-  </section>
-
-  <section class="section">
-    <h2>Projects</h2>
-    <p>
-      OpenMaja is an umbrella for sub-projects that explore specific capabilities and use cases
-      within the Microsoft ecosystem. Each project is self-contained and can be deployed independently.
-    </p>
-    <div class="project-card">
-      <h3>FolderBot</h3>
-      <p>
-        A durable, resumable AI workspace backed by OneDrive for Business. Give your Copilot Studio
-        agent a persistent memory and file workspace — with no custom infrastructure required.
-        Works in any M365 tenant out of the box.
+  <section class="hero-band">
+    <div class="hero-inner">
+      <h1>OpenMaja</h1>
+      <p class="tagline">AI crabs built for corporate environments.</p>
+      <p class="subtagline"><a href="https://en.wikipedia.org/wiki/Maja_brachydactyla" target="_blank" rel="noopener"><em>Maja brachydactyla</em></a> is the European spider crab. It shares the same claws and the same sea as <a href="https://openclaw.ai" target="_blank" rel="noopener">openclaw.ai</a>. </p>
+      <p class="subtagline">She just works in the establishment.</p>
       </p>
-      <a class="cta" href="/projects/folderbot">View project →</a>
     </div>
   </section>
+
+  <div class="container">
+
+    <section class="section">
+      <h2>What is OpenMaja?</h2>
+      <p>
+        OpenMaja is an open-source exploration into what autonomous AI agents look like when built
+        for corporate environments. It was directly inspired by <a href="https://openclaw.ai" target="_blank" rel="noopener">OpenClaw</a>
+        and aims to bring the same feel and capabilities — scheduled tasks, persistent
+        memory, skill-driven workflows — into organizations where IT governance, data policies,
+        and enterprise tooling are first-class constraints.
+      </p>
+      <p>
+        It is not a product. It is a hobby project and a working proof of concept, developed openly
+        and shared for anyone curious about the same ideas.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Core principles</h2>
+      <ul class="principles">
+        <li><strong>Agent-first</strong> — autonomous, scheduled workflows driven by reusable skills, not just a chat interface</li>
+        <li><strong>Corporate-safe</strong> — designed to be acceptable in environments with strict IT governance, security reviews, and compliance requirements</li>
+        <li><strong>IT-approvable</strong> — governance constraints are first-class design concerns, not afterthoughts</li>
+        <li><strong>Open</strong> — source code is available; no proprietary services or vendor lock-in (except the ones you'll already have and find in your corporate environment)</li>
+        <li><strong>Microsoft-ecosystem</strong> — built to integrate naturally with M365, Entra ID, Teams, and the Microsoft Graph API</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>What's in it</h2>
+      <p>The core components are the same as <a href="https://openclaw.ai" target="_blank" rel="noopener">OpenClaw</a>:</p>
+      <ul class="components">
+        <li><strong>Models</strong> — your choice of preferred LLMs available in your corporate environment</li>
+        <li><strong>Skills</strong> — discrete, file-based agent routines that define what the agent does and how</li>
+        <li><strong>Scheduler</strong> — cron-like task scheduling that fires agent turns autonomously</li>
+        <li><strong>Channels</strong> — delivery of agent output to Teams, Outlook, or others</li>
+        <li><strong>Memory</strong> — persistent context that carries knowledge across sessions</li>
+        <li><strong>Tools</strong> — connectors that allow the agent to interact with external services</li>
+      </ul>
+
+      <h2>Execution Environments</h2>
+      <p>
+        The <strong>openmaja</strong> runtime is currently under development, built upon the
+        <a href="https://github.com/microsoft/agent-framework" target="_blank" rel="noopener">Microsoft Agent Framework (MAF)</a>.
+        It has not been released yet — but if the authors find enough hobby time (and tokens), it may see the light at some point.
+      </p>
+      <p>
+        As an alternate execution environment, <a href="/projects/folderbot"><strong>FolderBot</strong></a> is already released:
+        a fully PaaS light agent leveraging Copilot Studio and Power Automate capabilities, with no custom infrastructure required.
+      </p>
+    </section>
+
+    <section id="projects" class="section">
+      <h2>Projects</h2>
+      <p>
+        OpenMaja is an umbrella for sub-projects that explore specific capabilities and use cases
+        within the Microsoft ecosystem. Each project is self-contained and can be deployed independently.
+      </p>
+      <div class="project-card">
+        <h3>FolderBot</h3>
+        <p>
+          A durable, resumable AI workspace backed by OneDrive for Business. Give your Copilot Studio
+          agent a persistent memory and file workspace — with no custom infrastructure required.
+          Works in any M365 tenant out of the box.
+        </p>
+        <a class="cta" href="/projects/folderbot">View project →</a>
+      </div>
+    </section>
+
+  </div>
 
 </BaseLayout>

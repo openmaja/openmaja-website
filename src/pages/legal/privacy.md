@@ -1,6 +1,7 @@
 ---
 layout: ../../layouts/BaseLayout.astro
 title: Privacy Policy
+prose: true
 ---
 
 # Privacy Policy

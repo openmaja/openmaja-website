@@ -2,7 +2,10 @@
 layout: ../../layouts/BaseLayout.astro
 title: FolderBot
 description: A durable, resumable AI workspace backed by OneDrive for Business. No custom infrastructure required.
+prose: true
 ---
+
+import ChatDemo from '../../components/ChatDemo.astro';
 
 # FolderBot
 
@@ -19,6 +22,8 @@ FolderBot solves this by giving every session a persistent workspace backed by O
 ## What FolderBot does
 
 Every session gets its own folder in OneDrive containing the agent's state, working memory, active plan, conversation log, and any files it creates. Close the browser, come back the next day, type `/resume` — and the agent picks up exactly where it left off.
+
+<ChatDemo />
 
 ## How it works
 
@@ -76,8 +81,10 @@ FolderBot does not require OpenMaja itself. It deploys entirely within standard 
 
 **Initial release** — the Core (text-only) system is feature-complete and tested end-to-end.
 
-[→ View on GitHub](https://github.com/openmaja/openmaja-folderbot)
+## Getting Started
+
+Everything you need to deploy FolderBot in your M365 tenant is in the repository.
+
+[→ Get Started with openmaja-folderbot on GitHub](https://github.com/openmaja/openmaja-folderbot#getting-started)
 
 ---
-
-> **Disclaimer:** FolderBot is a hobby project and proof of concept, not intended for production use. If you plan to deploy in a corporate environment, always verify compliance with your organization's IT and security policies.

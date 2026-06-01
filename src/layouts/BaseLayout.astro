@@ -4,11 +4,20 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  prose?: boolean;
+  frontmatter?: { title?: string; description?: string; prose?: boolean };
 }
 const {
-  title,
-  description = 'Open-source autonomous agent framework for Microsoft 365 environments.',
+  title: directTitle,
+  description: directDesc,
+  prose: directProse,
+  frontmatter,
 } = Astro.props;
+
+// Markdown layouts pass frontmatter as Astro.props.frontmatter in Astro 5
+const title = directTitle ?? frontmatter?.title ?? '';
+const description = directDesc ?? frontmatter?.description ?? 'Open-source autonomous agent framework for corporate environments.';
+const prose = directProse ?? frontmatter?.prose ?? false;
 const pageTitle = title === 'OpenMaja' ? 'OpenMaja' : `${title} | OpenMaja`;
 ---
 <!doctype html>
@@ -18,27 +27,37 @@ const pageTitle = title === 'OpenMaja' ? 'OpenMaja' : `${title} | OpenMaja`;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <title>{pageTitle}</title>
-
   </head>
   <body>
     <header>
-      <div class="container">
-        <a href="/" class="brand">
-          <img src="/openmaja-logo.png" alt="OpenMaja logo" class="brand-logo" />
-          <span>OpenMaja</span>
-        </a>
+      <div class="header-inner">
+        <div class="brand-group">
+          <a href="/" class="brand">
+            <img src="/openmaja-logo.png" alt="OpenMaja logo" class="brand-logo" />
+            <span>OpenMaja</span>
+          </a>
+          <span class="header-badge">Hobby project · Proof-of-concept under development</span>
+        </div>
+        <nav>
+          <a href="/#projects">Projects</a>
+          <a href="https://github.com/openmaja" target="_blank" rel="noopener">GitHub</a>
+        </nav>
       </div>
     </header>
     <main>
-      <div class="container">
-        <slot />
-      </div>
+      {prose
+        ? <div class="container prose-page"><slot /></div>
+        : <slot />
+      }
     </main>
     <footer>
-      <div class="container">
-        <a href="/legal/terms">Terms of Service</a>
-        <a href="/legal/privacy">Privacy Policy</a>
-        <a href="https://github.com/openmaja">GitHub</a>
+      <div class="container footer-inner">
+        <div class="footer-links">
+          <a href="/legal/terms">Terms of Service</a>
+          <a href="/legal/privacy">Privacy Policy</a>
+          <a href="https://github.com/openmaja" target="_blank" rel="noopener">GitHub</a>
+        </div>
+	<p class="footer-disclaimer"><strong>Disclaimer</strong>: OpenMaja is not intended for production use. If you plan to deploy in a corporate environment, even just for trying it, always verify compliance with your organization's policies first.</p>
       </div>
     </footer>
   </body>
