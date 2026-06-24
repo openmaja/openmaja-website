@@ -36,11 +36,15 @@ FolderBot Orchestrator        ← routes sessions, enforces policy
         ▼
 FolderBot SessionBot          ← file operations, memory, plan, results
         │
-        ▼
-Power Automate                ← OneDrive CRUD via standard M365 connectors
-        │
-        ▼
-OneDrive for Business         ← durable workspace (all session state lives here)
+        ├──────────────────────────────────────┐
+        ▼                                      ▼
+Power Automate                         Local Runner (optional)
+← OneDrive CRUD via M365 connectors    ← browser tab, runs JS tools on session files
+        │                                      │
+        └──────────────────┬───────────────────┘
+                           ▼
+               OneDrive for Business
+               ← durable workspace (all session state lives here)
 ```
 
 ## Key features
@@ -48,9 +52,11 @@ OneDrive for Business         ← durable workspace (all session state lives her
 - **Durable sessions** — state, memory, and plan survive Copilot Studio resets; resume any session with `/resume`
 - **File operations** — create, read, update, and delete text files (`.md`, `.json`, `.txt`, `.csv`, `.log`, `.xml`, `.drawio`) within your session folder
 - **File as context** — drop a file into your session folder and ask the agent to reason over it
+- **Local runner** — optional browser-based runner that executes JavaScript tools on session files directly, unlocking capabilities beyond standard Power Automate flows
 - **No custom infrastructure** — built entirely on standard Power Automate connectors; works in any M365 tenant
 - **Portable** — no hardcoded tenant IDs, paths, or UPNs; fully configurable per deployment
 - **Multi-agent** — Orchestrator + SessionBot split keeps agent instructions lean and routing clean
+- **Extensible** — add custom tools in `user_tools/` without touching the runner or any flows
 
 ## Session workspace
 
@@ -59,6 +65,8 @@ Each session is a folder in OneDrive:
 ```
 FolderBot/
   SOUL.md                    ← global behavior rules (customize per tenant)
+  tools/                     ← built-in JS tools (runner.html lives here too)
+  user_tools/                ← your custom JS tools (optional)
   sessions/
     20260520-MyProject/
       state.json             ← authoritative session state
@@ -67,19 +75,34 @@ FolderBot/
       history.jsonl          ← full conversation log
       inputs/                ← user-supplied input files
       outputs/               ← agent-produced output files
+      jobs/                  ← runner job queue (created on first RunJS call)
 ```
 
 ## Components
 
-| Component | Requires |
-|---|---|
-| FolderBot | M365 tenant · Copilot Studio · Power Automate |
+| Component | Type | Requires |
+|---|---|---|
+| **Orchestrator** | Copilot Studio agent | Copilot Studio |
+| **SessionBot** | Copilot Studio agent | Copilot Studio |
+| **PA Flows** (×12) | Power Automate cloud flows | Power Automate · OneDrive for Business connector |
+| **Local Runner** *(optional)* | Browser tab (`tools/runner.html`) | Chrome or Edge · OneDrive sync client |
 
-FolderBot does not require OpenMaja itself. It deploys entirely within standard M365 tooling using native connectors.
+### Built-in JS tools (run via Local Runner)
+
+| Tool | What it does |
+|---|---|
+| `patch` | Apply a unified diff to a session file |
+| `regex-replace` | Regex find/replace with capture group support |
+| `fetch-api` | HTTP fetch with optional origin allowlist |
+| `write-root` | Write a file to the FolderBot root — used to install new custom tools |
+
+Custom tools can be added to `user_tools/` and are picked up by the runner automatically.
+
+FolderBot does not require OpenMaja itself. It deploys entirely within standard M365 tooling using native connectors. The Local Runner is an optional enhancement — all core operations work via Power Automate alone.
 
 ## Status
 
-**Initial release** — the Core (text-only) system is feature-complete and tested end-to-end.
+**v0.2.0.0** — Core system feature-complete and tested end-to-end; Local Runner available as an optional extension.
 
 ## Getting Started
 
